@@ -54,7 +54,7 @@ def bsc(request):
 
         response_data = {}
         nome = request.POST.get('nome')
-        certi = Certificado.objects.filter(participante__contains=nome).all()
+        certi = Certificado.objects.filter(participante__contains=nome).order_by('participante')
 
         if certi.__len__ == 0:
             return HttpResponse(
