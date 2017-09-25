@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ERRC - Certificados</title>
+  </head>
+  <body>
+    <h1>Bem vindo!</h1>
+    <br><br>
+    <div class="c1">
+      <h2>Esses são os certificados:</h2>
+    </div>
+    <div class="c2">
+      <hr>
+      {% for c1 in ctf_1 %}
+        <p>{{c1.participante}}: {{c1.tipo}} - <a href="/certificado/1">Link</a></p>
+      {% endfor %}
+    </div>
+
+  </body>
+</html>

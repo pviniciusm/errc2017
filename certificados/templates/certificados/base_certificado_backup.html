@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load atividades_extra %}
+<head>
+    <meta charset="UTF-8">
+    <title>Certificado - {{participacao.usuario.first_name}} em {{participacao.atividade.nome}}</title>
+    <style type="text/css">
+        @page {
+            width: 28cm;
+            height: 17cm;
+            margin: 1.0in 0.25in 0.5in 0.25in;
+            padding: 0;
+
+        } <!-- end of @page bracket -->
+
+        <!-- add content styles here -->
+        h1 { text-align: middle; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <!--<div style="float:left; width:100%; margin-top:-65px; margin-bottom:-200px;">
+        <img src="/media/img/pet_header.png" alt="" style="float:left; width:22%">
+        <p style="width:53%; height:120px; float:left; text-align:center; line-height:80px; font-size:42px;">Certificado</p>
+        <img src="/media/img/brasaoufsm.png" alt="" style="width:25%; float:right; padding-top:35px;">
+    </div>
+    <div style="font-size:19px; width:90%; margin-left:5%">
+        <p style="text-align:justify">Certificamos que o aluno {{participacao.usuario.first_name}} {{participacao.usuario.last_name}} participou {{participacao.tipo|certificado_tipo}} '{{participacao.atividade.nome}}' organizado pelo {{participacao.atividade.organizacao}}
+            da Universidade Federal de Santa Maria do dia {{participacao.atividade.data_inicial|date:"d/m/Y"}} ao dia {{participacao.atividade.data_final|date:"d/m/Y"}} com
+            a carga horária de {{participacao.horas_validas|carga:participacao.atividade.carga}} horas.
+        </p>
+    </div>-->
+
+    <div style="width:1104px; height:784px; margin-top:-103px; margin-left:-31px;">
+        <div style="float:left; height:100%; width:12%; background-image:url('/media/img/cert_left.png'); background-size:cover; background-repeat:no-repeat">
+        </div>
+        <div style="float:right; width:80%;">
+            <p style="font-family:Trebuchet MS; margin-left:230px; margin-top:100px; font-size: 54px">Certificado</p>
+            <br><br>
+            <p style="text-align:justify; margin-right:80px; font-size:21px; font-family:Trebuchet MS">Certificamos que {{participacao.usuario.first_name}} {{participacao.usuario.last_name}}{{participacao.usuario.matricula|aluno}} participou {{participacao.tipo|certificado_tipo}} '{{participacao.atividade.nome}}' organizado pelo {{participacao.atividade.organizacao}}
+                da Universidade Federal de Santa Maria{% if participacao.atividade.data_inicial == participacao.atividade.data_final %} no dia {{participacao.atividade.data_inicial|date:"d/m/Y"}}, {% else %}, no período de {{participacao.atividade.data_inicial|date:"d/m/Y"}} à {{participacao.atividade.data_final|date:"d/m/Y"}}{%endif%}
+
+                totalizando {{participacao.horas_validas|carga:participacao.atividade.carga}} horas.
+            </p>
+            <br><br>
+        </div>
+        <div style="float:right; width:80%; margin-right:80px;">
+            {% if participacao.atividade.organizacao|responsavel %}
+                <p style="text-align:center"><img src="/media/img/assinatura.png" style="height:60px"></p>
+                <p style="text-align:center; margin-top:-30px;">____________________________________________</p>
+                <p style="text-align:center">Tutor - PET Ciência da Computação UFSM</p>
+            {% else %}
+                <p style="text-align:center">____________________________________________</p>
+                <p style="text-align:center"> Coordenador - Ciência da Computação UFSM</p>
+            {% endif %}
+        </div>
+        <div style="float:right; width:30%; margin-top:175px;">
+            <img src="/media/img/cert_left3.png" alt="" style="width:500px">
+        </div>
+        <div style="float:right; width:48%; margin-top:80px; font-family:Trebuchet MS; font-size:12px;">
+            <p>Organização e apoio: </p>
+            <p style="margin-left:20px;">
+                <img src="/media/img/pet_header.png" alt="" style="height:80px;">
+                <img src="/media/img/ufsm.png" alt="" style="height:80px; margin-left:40px;">
+                <img src="/media/img/inf.gif" alt="" style="height:80px; margin-left:40px;">
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>
