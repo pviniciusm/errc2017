@@ -13,6 +13,7 @@ tipos = {
     "PA" : "Palestrante",
     "AU" : "Autor",
     "PC" : "Participante",
+    "PR" : "Premio",
 }
 
 def certificados(request):
@@ -33,10 +34,14 @@ def render_to_pdf(request, template_src, context_dict):
 
 def get_certificado(request, part_id):
     part = get_object_or_404(Certificado, id=part_id)
-    if part.tipo in ['PC', 'POG', 'OG']:
+    if part.tipo in ['PC', 'OG']:
         return render_to_pdf(request, 'certificados/base_certificado.html', {'part': part, 'tipo':tipos[part.tipo]})
     elif part.tipo == 'PA':
         return render_to_pdf(request, 'certificados/base_certificado_palestra.html', {'part': part})
+    elif part.tipo == 'POG':
+        return render_to_pdf(request, 'certificados/base_certificado_hack.html', {'part': part})
+    elif part.tipo == 'PR':
+        return render_to_pdf(request, 'certificados/base_certificado_premio.html', {'part': part})
     else:
         return render_to_pdf(request, 'certificados/base_certificado_autor.html', {'part': part})
 
